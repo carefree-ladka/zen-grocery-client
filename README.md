@@ -2,6 +2,8 @@
 
 A modern, responsive Single Page Application for online shopping built with React, TypeScript, and Redux Toolkit.
 
+Microservice for this app : https://github.com/carefree-ladka/zen-grocery-api/tree/main
+
 ## 🚀 Features
 
 - **Modern Tech Stack**: React 18+ with TypeScript, Redux Toolkit, Axios
