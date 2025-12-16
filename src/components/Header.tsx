@@ -1,8 +1,11 @@
-import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useAppSelector, useAppDispatch } from '../shared/store/hooks';
-import { setView } from '../shared/store/uiSlice';
-import type { View, WithNoProps } from '../shared/types';
+import { Container, Nav, Navbar } from "react-bootstrap";
+import {
+  type View,
+  type WithNoProps,
+  setView,
+  useAppDispatch,
+  useAppSelector,
+} from "../shared";
 
 const Header: WithNoProps = () => {
   const currentView = useAppSelector((state) => state.ui.currentView);
@@ -19,17 +22,17 @@ const Header: WithNoProps = () => {
           <span>Zen Grocery</span>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link 
-            active={currentView === 'home'}
-            onClick={() => handleNavClick('home')}
-            style={{ cursor: 'pointer' }}
+          <Nav.Link
+            active={currentView === "home"}
+            onClick={() => handleNavClick("home")}
+            style={{ cursor: "pointer" }}
           >
             Home
           </Nav.Link>
-          <Nav.Link 
-            active={currentView === 'cart'}
-            onClick={() => handleNavClick('cart')}
-            style={{ cursor: 'pointer' }}
+          <Nav.Link
+            active={currentView === "cart"}
+            onClick={() => handleNavClick("cart")}
+            style={{ cursor: "pointer" }}
           >
             Cart
           </Nav.Link>

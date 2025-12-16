@@ -1,9 +1,14 @@
 import { useEffect, useMemo } from "react";
 import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useToast } from "../hooks/useToast";
-import { fetchCartItems, removeFromCart } from "../shared/store/cartSlice";
-import { useAppDispatch, useAppSelector } from "../shared/store/hooks";
-import type { CartItemWithProduct, WithNoChildren } from "../shared/types";
+import { useToast } from "../hooks";
+import {
+  type CartItemWithProduct,
+  fetchCartItems,
+  removeFromCart,
+  useAppDispatch,
+  useAppSelector,
+  type WithNoChildren,
+} from "../shared";
 import Toast from "./Toast";
 
 const Cart: WithNoChildren = () => {

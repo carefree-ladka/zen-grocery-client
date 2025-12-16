@@ -1,6 +1,4 @@
-import type { Product } from '../shared/types';
-import { apiClient } from '../shared/utils/axiosConfig';
-
+import { apiClient, type Product } from '../shared';
 export class ProductService {
   static async getAllProducts(): Promise<Product[]> {
     try {

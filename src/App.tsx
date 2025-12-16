@@ -1,9 +1,9 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { store } from './shared/store/store';
-import { useAppSelector } from './shared/store/hooks';
-import { Header, Home, Cart, ErrorBoundary } from './components';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Provider } from "react-redux";
+import { Cart, ErrorBoundary, Header, Home } from "./components";
+import { UI_CURRENT_VIEW, useAppSelector } from "./shared";
+import { store } from "./shared/store/store";
 
 const AppContent: React.FC = () => {
   const currentView = useAppSelector((state) => state.ui.currentView);
@@ -11,7 +11,7 @@ const AppContent: React.FC = () => {
   return (
     <>
       <Header />
-      {currentView === 'home' ? <Home /> : <Cart />}
+      {currentView === UI_CURRENT_VIEW.home ? <Home /> : <Cart />}
     </>
   );
 };

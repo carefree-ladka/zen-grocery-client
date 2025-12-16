@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import { useToast } from "../hooks/useToast";
-import { CATEGORIES } from "../shared/constants";
-import { addToCart, fetchCartItems } from "../shared/store/cartSlice";
-import { useAppDispatch, useAppSelector } from "../shared/store/hooks";
-import { fetchProducts, setCategory } from "../shared/store/productSlice";
-import type { Category } from "../shared/types";
+import { useToast } from "../hooks";
+import {
+  CATEGORIES,
+  addToCart,
+  fetchCartItems,
+  fetchProducts,
+  setCategory,
+  useAppDispatch,
+  useAppSelector,
+  type Category,
+} from "../shared";
 import Loading from "./Loading";
 import Toast from "./Toast";
 

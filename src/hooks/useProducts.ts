@@ -1,10 +1,16 @@
-import { useAppSelector, useAppDispatch } from '../shared/store/hooks';
-import { fetchProducts as fetchProductsAction, setCategory as setCategoryAction } from '../shared/store/productSlice';
-import type { Category } from '../shared/types';
+import {
+  fetchProducts as fetchProductsAction,
+  setCategory as setCategoryAction,
+  useAppDispatch,
+  useAppSelector,
+  type Category,
+} from "../shared";
 
 export const useProducts = () => {
   const dispatch = useAppDispatch();
-  const { products, selectedCategory, loading, error } = useAppSelector((state) => state.products);
+  const { products, selectedCategory, loading, error } = useAppSelector(
+    (state) => state.products
+  );
 
   const fetchProducts = () => {
     dispatch(fetchProductsAction());
@@ -14,9 +20,10 @@ export const useProducts = () => {
     dispatch(setCategoryAction(category));
   };
 
-  const filteredProducts = selectedCategory === 'All' 
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   return {
     products,

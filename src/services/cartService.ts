@@ -1,5 +1,4 @@
-import type { CartItem } from '../shared/types';
-import { apiClient } from '../shared/utils/axiosConfig';
+import { apiClient, type CartItem } from '../shared';
 
 export class CartService {
   static async getCartItems(): Promise<CartItem[]> {

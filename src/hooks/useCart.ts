@@ -1,9 +1,18 @@
-import { addToCart as addToCartAction, fetchCartItems, removeFromCart as removeFromCartAction } from '../shared/store/cartSlice';
-import { useAppDispatch, useAppSelector } from '../shared/store/hooks';
+import {
+  addToCart as addToCartAction,
+  fetchCartItems,
+  removeFromCart as removeFromCartAction,
+  useAppDispatch,
+  useAppSelector,
+} from "../shared";
 
 export const useCart = () => {
   const dispatch = useAppDispatch();
-  const { items: cartItems, addedToCartIds, loading, error } = useAppSelector((state) => state.cart);
+  const {
+    items: cartItems,
+    loading,
+    error,
+  } = useAppSelector((state) => state.cart);
 
   const addToCart = (productId: string) => {
     return dispatch(addToCartAction(productId));
@@ -19,7 +28,6 @@ export const useCart = () => {
 
   return {
     cartItems,
-    addedToCartIds,
     loading,
     error,
     addToCart,
