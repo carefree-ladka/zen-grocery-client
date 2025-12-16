@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { useToast } from "../hooks";
 import {
   CATEGORIES,
+  ProductCard,
   addToCart,
   fetchCartItems,
   fetchProducts,
@@ -81,36 +82,11 @@ const Home: React.FC = () => {
         <Row>
           {filteredProducts.map((product) => (
             <Col key={product.id} md={4} className="mb-4">
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src={product.imageUrl}
-                  style={{ height: "200px", objectFit: "cover" }}
-                />
-                <Card.Body>
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Text>
-                    <strong>₹{product.price}</strong>
-                    <br />
-                    <small className="text-muted">{product.category}</small>
-                  </Card.Text>
-                  <Button
-                    variant={
-                      cartItems.some((item) => item.productId === product.id)
-                        ? "success"
-                        : "primary"
-                    }
-                    onClick={() => handleAddToCart(product.id)}
-                    disabled={cartItems.some(
-                      (item) => item.productId === product.id
-                    )}
-                  >
-                    {cartItems.some((item) => item.productId === product.id)
-                      ? "Added to Cart"
-                      : "Add to Cart"}
-                  </Button>
-                </Card.Body>
-              </Card>
+              <ProductCard
+                product={product}
+                isInCart={cartItems.some((item) => item.productId === product.id)}
+                onAddToCart={handleAddToCart}
+              />
             </Col>
           ))}
         </Row>
