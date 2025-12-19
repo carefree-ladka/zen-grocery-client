@@ -9,6 +9,7 @@ import {
 
 const Header: WithNoProps = () => {
   const currentView = useAppSelector((state) => state.ui.currentView);
+  const { items: cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   const handleNavClick = (view: View) => {
@@ -35,6 +36,11 @@ const Header: WithNoProps = () => {
             style={{ cursor: "pointer" }}
           >
             Cart
+            {/* {cartItems.length > 0 && ( */}
+              <sup style={{ fontSize: "0.7em", marginLeft: "2px" }}>
+                {cartItems.length}
+              </sup>
+            {/* // )} */}
           </Nav.Link>
         </Nav>
       </Container>

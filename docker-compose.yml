@@ -1,0 +1,71 @@
+services:
+  api-gateway:
+    image: node:18-alpine
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    environment:
+      - PRODUCT_SERVICE_URL=http://product-service:5001
+      - CART_SERVICE_URL=http://cart-service:5002
+    command: |
+      sh -c '
+      git clone https://github.com/carefree-ladka/zen-grocery-api.git .
+      cd packages/api-gateway
+      npm install
+      npm start
+      '
+    depends_on:
+      - product-service
+      - cart-service
+    restart: unless-stopped
+
+  product-service:
+    image: node:18-alpine
+    working_dir: /app
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017/zen-grocery}
+      - PORT=5001
+    command: |
+      sh -c '
+      apk add --no-cache git
+      git clone https://github.com/carefree-ladka/zen-grocery-api.git .
+      cd packages/product-service
+      npm install
+      npm start
+      '
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  cart-service:
+    image: node:18-alpine
+    working_dir: /app
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017/zen-grocery}
+      - PORT=5002
+    command: |
+      sh -c '
+      apk add --no-cache git
+      git clone https://github.com/carefree-ladka/zen-grocery-api.git .
+      cd packages/cart-service
+      npm install
+      npm start
+      '
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
